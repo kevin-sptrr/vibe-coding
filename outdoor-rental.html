@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kepin's Outdoor - Persewaan Alat Camping & Outdoor Premium</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-primary': '#F58A25',
+                        'brand-primary-hover': '#E07918',
+                        'brand-secondary': '#1D3B2A',
+                        'brand-secondary-hover': '#142B1E',
+                        'brand-gold': '#FFB800',
+                        'brand-bg': '#F6F8F5',
+                        'brand-surface': '#FFFFFF',
+                        'brand-surface-muted': '#EFF3EC',
+                        'text-primary': '#111827',
+                        'text-secondary': '#5E6E63',
+                        'text-muted': '#8F9E93',
+                        'border-subtle': '#E3E8E0',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0px 10px 30px rgba(0, 0, 0, 0.06)',
+                        'hover': '0px 20px 40px rgba(0, 0, 0, 0.12)',
+                        'glow': '0px 8px 25px rgba(245, 138, 37, 0.25)',
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F6F8F5;
+            color: #111827;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F6F8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C2CEBE;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1D3B2A;
+        }
+
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(180deg, rgba(17, 24, 39, 0.35) 0%, rgba(29, 59, 42, 0.8) 100%), url('https://images.unsplash.com/photo-1510312305653-8ed496efae75?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Hide Scrollbar for horizontal filter chips */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased">
+
+    <!-- Sticky Navigation Header -->
+    <header class="sticky top-0 z-40 bg-brand-surface/90 backdrop-blur-md border-b border-border-subtle transition-all duration-300">
+        <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-full bg-brand-secondary flex items-center justify-center text-brand-primary group-hover:scale-105 transition-transform shadow-soft">
+                    <i class="fa-solid me-0.5 fa-mountain-sun text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-text-primary block leading-none">Kepin's <span class="text-brand-primary">Outdoor</span></span>
+                    <span class="text-[10px] text-text-secondary font-medium tracking-widest uppercase">Explore. Dream. Discover.</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#hero" class="text-sm font-semibold text-brand-primary flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-compass text-xs"></i> Beranda
+                </a>
+                <a href="#katalog" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">
+                    Katalog Alat
+                </a>
+                <a href="#fitur-sewa" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">
+                    Form Sewa
+                </a>
+                <a href="#transaksi" class="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">
+                    Riwayat Transaksi
+                </a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="switchTab('admin')" class="hidden sm:flex items-center gap-2 px-4 py-2.5 rounded-full bg-brand-surface-muted hover:bg-brand-secondary hover:text-white text-brand-secondary text-xs font-semibold transition-all shadow-sm border border-border-subtle">
+                    <i class="fa-solid fa-user-shield text-sm"></i>
+                    <span>Panel Admin</span>
+                </button>
+                <a href="#fitur-sewa" onclick="scrollToBooking()" class="px-5 py-2.5 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-semibold transition-all shadow-glow hover:scale-[1.02] flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Sewa Sekarang</span>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-full bg-brand-surface-muted flex items-center justify-center text-text-primary hover:bg-border-subtle">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-drawer" class="hidden md:hidden bg-brand-surface border-b border-border-subtle px-6 py-4 space-y-3">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-brand-primary">Beranda</a>
+            <a href="#katalog" onclick="toggleMobileMenu()" class="block text-sm font-medium text-text-secondary">Katalog Alat Outdoor</a>
+            <a href="#fitur-sewa" onclick="toggleMobileMenu()" class="block text-sm font-medium text-text-secondary">Form Pemesanan</a>
+            <a href="#transaksi" onclick="toggleMobileMenu()" class="block text-sm font-medium text-text-secondary">Kelola Transaksi</a>
+            <button onclick="switchTab('admin'); toggleMobileMenu();" class="w-full text-left py-2 text-xs font-semibold text-brand-secondary flex items-center gap-2">
+                <i class="fa-solid fa-user-shield"></i> Panel Kelola Admin
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="hero" class="relative hero-bg pt-16 pb-28 md:pt-24 md:pb-36 px-4 sm:px-6 lg:px-8 text-white rounded-b-[2.5rem] md:rounded-b-[3.5rem] shadow-hover">
+            <div class="max-w-[1240px] mx-auto text-center relative z-10">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold tracking-wider text-brand-gold uppercase border border-white/20 mb-6">
+                    <i class="fa-solid fa-campground"></i> EXPLORE THE OUTDOORS WITH KEPIN'S
+                </span>
+                <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight md:leading-none">
+                    Eksplorasi Alam Bebas.<br>Find Your True Adventure.
+                </h1>
+                <p class="mt-4 text-base sm:text-lg text-slate-200 max-w-2xl mx-auto font-normal">
+                    Peralatan camping, mendaki gunung, dan perlengkapan outdoor berkualitas tinggi, higienis, dan bersertifikasi aman untuk perjalanan Anda.
+                </p>
+
+                <!-- Floating Search & Booking Quick Bar (Design.md Pill Style) -->
+                <div class="mt-10 max-w-4xl mx-auto bg-brand-surface rounded-3xl md:rounded-full p-3 sm:p-4 shadow-hover text-text-primary border border-border-subtle">
+                    <form id="hero-quick-search-form" onsubmit="handleQuickSearch(event)" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-0 divide-y sm:divide-y-0 sm:divide-x divide-border-subtle items-center">
+                        <!-- Segment 1: Live Text Search -->
+                        <div class="px-4 py-2 text-left">
+                            <label class="block text-[11px] font-bold text-text-muted uppercase tracking-wider">Cari Peralatan</label>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i class="fa-solid fa-magnifying-glass text-brand-primary text-sm"></i>
+                                <input type="text" id="quick-search-input" oninput="renderCatalogGrid()" placeholder="Tenda, Carrier, Kompor..." class="w-full bg-transparent text-sm font-semibold text-text-primary focus:outline-none placeholder:text-text-muted">
+                            </div>
+                        </div>
+
+                        <!-- Segment 2: Category Filter Select -->
+                        <div class="px-4 py-2 text-left">
+                            <label class="block text-[11px] font-bold text-text-muted uppercase tracking-wider">Kategori Alat</label>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i class="fa-solid fa-layer-group text-brand-primary text-sm"></i>
+                                <select id="quick-category-select" onchange="handleCategorySelectChange()" class="w-full bg-transparent text-sm font-semibold text-text-primary focus:outline-none cursor-pointer">
+                                    <option value="Semua">Semua Kategori</option>
+                                    <option value="Tenda">Tenda Camping</option>
+                                    <option value="Carrier">Tas Carrier</option>
+                                    <option value="Sleeping Bag">Sleeping Bag</option>
+                                    <option value="Peralatan Masak">Peralatan Masak</option>
+                                    <option value="Penerangan">Penerangan & Aksesoris</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Segment 3: Status Filter Select -->
+                        <div class="px-4 py-2 text-left">
+                            <label class="block text-[11px] font-bold text-text-muted uppercase tracking-wider">Status Stok</label>
+                            <div class="flex items-center gap-2 mt-1">
+                                <i class="fa-solid fa-circle-check text-brand-primary text-sm"></i>
+                                <select id="quick-status-select" onchange="renderCatalogGrid()" class="w-full bg-transparent text-sm font-semibold text-text-primary focus:outline-none cursor-pointer">
+                                    <option value="Semua">Semua Status</option>
+                                    <option value="Tersedia">Tersedia</option>
+                                    <option value="Disewa">Disewa</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Segment 4: Action Button -->
+                        <div class="p-2 flex items-center justify-end">
+                            <button type="submit" class="w-full h-12 rounded-full bg-brand-secondary hover:bg-brand-secondary-hover text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-soft hover:shadow-glow">
+                                <i class="fa-solid fa-sliders"></i>
+                                <span>Filter Katalog</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition Bar -->
+        <section class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+            <div class="bg-brand-surface rounded-3xl p-6 sm:p-8 shadow-soft border border-border-subtle grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-surface-muted flex items-center justify-center text-brand-secondary shrink-0">
+                        <i class="fa-solid fa-compass-drafting text-xl text-brand-primary"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-text-primary">Peralatan Handpicked</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Merk ternama bersertifikasi outdoor standar internasional.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-surface-muted flex items-center justify-center text-brand-secondary shrink-0">
+                        <i class="fa-solid fa-tags text-xl text-brand-primary"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-text-primary">Garansi Harga Terbaik</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Sewa harian hemat dengan paket pemesanan fleksibel.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-surface-muted flex items-center justify-center text-brand-secondary shrink-0">
+                        <i class="fa-solid fa-shield-heart text-xl text-brand-primary"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-text-primary">Bersih & Steril</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Setiap unit dicuci dan distrerilisasi sebelum disewakan.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-surface-muted flex items-center justify-center text-brand-secondary shrink-0">
+                        <i class="fa-solid fa-headset text-xl text-brand-primary"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-text-primary">Dukungan 24/7</h4>
+                        <p class="text-xs text-text-secondary mt-0.5">Tim konsultan pendakian siap membantu memilih alat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalog Section -->
+        <section id="katalog" class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold text-brand-primary tracking-wider uppercase mb-1 block">
+                        <i class="fa-solid fa-leaf"></i> PERALATAN POPULER
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-secondary tracking-tight">
+                        Katalog Peralatan Outdoor
+                    </h2>
+                    <p class="text-sm text-text-secondary mt-1">
+                        Pilih perlengkapan gunung & camping siap pakai dengan jaminan kualitas terbaik.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-semibold text-text-secondary">Total Ditemukan:</span>
+                    <span id="catalog-count-badge" class="px-3 py-1 rounded-full bg-brand-secondary text-white text-xs font-bold">0 Unit</span>
+                </div>
+            </div>
+
+            <!-- Category Filter Chips -->
+            <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar pb-4 mb-8">
+                <button onclick="filterCategory('Semua')" data-category="Semua" class="category-chip active px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap bg-brand-surface-muted border border-brand-secondary text-brand-secondary shadow-sm">
+                    <i class="fa-solid fa-border-all mr-1.5"></i> Semua Peralatan
+                </button>
+                <button onclick="filterCategory('Tenda')" data-category="Tenda" class="category-chip px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap bg-brand-surface border border-border-subtle text-text-secondary hover:border-brand-primary hover:text-brand-primary">
+                    <i class="fa-solid fa-tent mr-1.5"></i> Tenda Camping
+                </button>
+                <button onclick="filterCategory('Carrier')" data-category="Carrier" class="category-chip px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap bg-brand-surface border border-border-subtle text-text-secondary hover:border-brand-primary hover:text-brand-primary">
+                    <i class="fa-solid fa-vest-patches mr-1.5"></i> Tas Carrier
+                </button>
+                <button onclick="filterCategory('Sleeping Bag')" data-category="Sleeping Bag" class="category-chip px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap bg-brand-surface border border-border-subtle text-text-secondary hover:border-brand-primary hover:text-brand-primary">
+                    <i class="fa-solid fa-bed mr-1.5"></i> Sleeping Bag
+                </button>
+                <button onclick="filterCategory('Peralatan Masak')" data-category="Peralatan Masak" class="category-chip px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap bg-brand-surface border border-border-subtle text-text-secondary hover:border-brand-primary hover:text-brand-primary">
+                    <i class="fa-solid fa-fire-burner mr-1.5"></i> Peralatan Masak
+                </button>
+                <button onclick="filterCategory('Penerangan')" data-category="Penerangan" class="category-chip px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap bg-brand-surface border border-border-subtle text-text-secondary hover:border-brand-primary hover:text-brand-primary">
+                    <i class="fa-solid fa-lightbulb mr-1.5"></i> Penerangan & Aksesoris
+                </button>
+            </div>
+
+            <!-- Equipment Catalog Grid -->
+            <div id="equipment-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Injected dynamically via JS -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="catalog-empty-state" class="hidden text-center py-16 bg-brand-surface rounded-3xl border border-dashed border-border-subtle">
+                <div class="w-16 h-16 rounded-full bg-brand-surface-muted flex items-center justify-center text-brand-primary mx-auto mb-3 text-2xl">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="text-base font-bold text-text-primary">Tidak Ada Peralatan Ditemukan</h3>
+                <p class="text-xs text-text-secondary mt-1">Coba sesuaikan kata kunci pencarian atau kategori filter Anda.</p>
+                <button onclick="resetSearchAndFilter()" class="mt-4 px-4 py-2 rounded-full bg-brand-primary text-white text-xs font-semibold hover:bg-brand-primary-hover">
+                    Reset Filter Search
+                </button>
+            </div>
+        </section>
+
+        <!-- Special Offer Banner -->
+        <section class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="bg-brand-secondary rounded-[2rem] p-8 sm:p-12 text-white relative overflow-hidden shadow-hover flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center"></div>
+
+                <div class="relative z-10 max-w-xl">
+                    <span class="px-3.5 py-1 rounded-full bg-brand-primary/20 text-brand-gold text-xs font-bold uppercase tracking-wider mb-3 inline-block border border-brand-primary/30">
+                        SPECIAL OFFER ✨
+                    </span>
+                    <h3 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+                        Your Next Adventure Starts Here
+                    </h3>
+                    <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+                        Sewa paket 1 Tenda + 2 Carrier + 2 Sleeping Bag + 1 Kompor & Nesting dengan hemat hingga 25% untuk pemesanan min. 3 hari.
+                    </p>
+                </div>
+
+                <div class="relative z-10 shrink-0">
+                    <a href="#katalog" onclick="filterCategory('Tenda')" class="px-6 py-3.5 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-bold transition-all shadow-glow inline-flex items-center gap-2">
+                        <span>Lihat Paket Bundling</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking & Rental Order Form Section -->
+        <section id="fitur-sewa" class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="bg-brand-surface rounded-[2rem] shadow-hover border border-border-subtle p-6 sm:p-10 lg:p-12 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <!-- Left Form Description Column -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-brand-surface-muted text-brand-secondary text-xs font-bold uppercase tracking-wider mb-3 border border-border-subtle">
+                                <i class="fa-solid fa-clipboard-check text-brand-primary"></i> FORMULIR PENYEWAAN
+                            </span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-secondary tracking-tight">
+                                Pesan Alat Outdoor Pilihan Anda
+                            </h2>
+                            <p class="text-sm text-text-secondary mt-2 leading-relaxed">
+                                Isikan data diri dan durasi persewaan. Sistem kami akan secara otomatis menghitung total biaya sewa secara transparan tanpa biaya tersembunyi.
+                            </p>
+                        </div>
+
+                        <!-- Summary Live Calculation Box -->
+                        <div class="bg-brand-bg rounded-2xl p-5 border border-border-subtle space-y-3">
+                            <h4 class="text-xs font-bold text-text-muted uppercase tracking-wider flex items-center justify-between">
+                                <span>Rincian Biaya Estimasi</span>
+                                <i class="fa-solid fa-calculator text-brand-primary"></i>
+                            </h4>
+                            <div class="flex justify-between text-xs text-text-secondary">
+                                <span>Item Dipilih:</span>
+                                <span id="summary-item-name" class="font-bold text-text-primary text-right truncate max-w-[180px]">- Belum Dipilih -</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-text-secondary">
+                                <span>Harga Per Hari:</span>
+                                <span id="summary-price-per-day" class="font-semibold text-text-primary">Rp 0</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-text-secondary">
+                                <span>Durasi Sewa:</span>
+                                <span id="summary-duration" class="font-semibold text-text-primary">1 Hari</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-text-secondary">
+                                <span>Jumlah Unit:</span>
+                                <span id="summary-quantity" class="font-semibold text-text-primary">1 Unit</span>
+                            </div>
+                            <div class="border-t border-border-subtle pt-3 flex justify-between items-center">
+                                <span class="text-sm font-bold text-brand-secondary">Total Biaya Sewa:</span>
+                                <span id="summary-total-cost" class="text-lg font-extrabold text-brand-primary">Rp 0</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-xs text-text-secondary">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-brand-primary"></i>
+                                <span>Pengambilan alat dapat dilakukan di toko atau kirim ke alamat.</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-brand-primary"></i>
+                                <span>Wajib membawa Kartu Identitas (KTP/SIM/KTM) asli sebagai jaminan.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Booking Form Column -->
+                    <div class="lg:col-span-7 bg-brand-bg p-6 sm:p-8 rounded-2xl border border-border-subtle">
+                        <form id="rental-booking-form" onsubmit="submitBookingForm(event)" class="space-y-5">
+                            <!-- Input 1: Item Selection -->
+                            <div>
+                                <label for="booking-item-select" class="block text-xs font-bold text-text-primary mb-1.5">
+                                    Pilih Alat Outdoor <span class="text-red-500">*</span>
+                                </label>
+                                <select id="booking-item-select" required onchange="calculateRentalCost()" class="w-full px-4 py-3 rounded-xl bg-brand-surface border border-border-subtle text-sm text-text-primary font-medium focus:ring-2 focus:ring-brand-primary focus:outline-none transition-all">
+                                    <option value="" disabled selected>-- Pilih peralatan dari katalog --</option>
+                                    <!-- Populated dynamically via JS -->
+                                </select>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Input 2: Renter Name -->
+                                <div>
+                                    <label for="renter-name" class="block text-xs font-bold text-text-primary mb-1.5">
+                                        Nama Penyewa Lengkap <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" id="renter-name" required placeholder="Contoh: Budi Santoso" class="w-full px-4 py-3 rounded-xl bg-brand-surface border border-border-subtle text-sm text-text-primary font-medium focus:ring-2 focus:ring-brand-primary focus:outline-none transition-all">
+                                </div>
+
+                                <!-- Input 3: Renter Phone/WhatsApp -->
+                                <div>
+                                    <label for="renter-phone" class="block text-xs font-bold text-text-primary mb-1.5">
+                                        Nomor WhatsApp / HP <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="tel" id="renter-phone" required placeholder="081234567890" pattern="[0-9]{9,15}" class="w-full px-4 py-3 rounded-xl bg-brand-surface border border-border-subtle text-sm text-text-primary font-medium focus:ring-2 focus:ring-brand-primary focus:outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <!-- Input 4: Start Date (Restricted to Min Today) -->
+                                <div>
+                                    <label for="rental-date" class="block text-xs font-bold text-text-primary mb-1.5">
+                                        Tanggal Sewa <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="date" id="rental-date" required onchange="calculateRentalCost()" class="w-full px-4 py-3 rounded-xl bg-brand-surface border border-border-subtle text-sm text-text-primary font-medium focus:ring-2 focus:ring-brand-primary focus:outline-none transition-all">
+                                </div>
+
+                                <!-- Input 5: Duration -->
+                                <div>
+                                    <label for="rental-duration" class="block text-xs font-bold text-text-primary mb-1.5">
+                                        Durasi (Hari) <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="number" id="rental-duration" min="1" max="30" value="1" required oninput="calculateRentalCost()" class="w-full px-4 py-3 rounded-xl bg-brand-surface border border-border-subtle text-sm text-text-primary font-medium focus:ring-2 focus:ring-brand-primary focus:outline-none transition-all">
+                                </div>
+
+                                <!-- Input 6: Quantity -->
+                                <div>
+                                    <label for="rental-quantity" class="block text-xs font-bold text-text-primary mb-1.5">
+                                        Jumlah Unit <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="number" id="rental-quantity" min="1" max="10" value="1" required oninput="calculateRentalCost()" class="w-full px-4 py-3 rounded-xl bg-brand-surface border border-border-subtle text-sm text-text-primary font-medium focus:ring-2 focus:ring-brand-primary focus:outline-none transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Input 7: Optional Notes -->
+                            <div>
+                                <label for="rental-notes" class="block text-xs font-bold text-text-primary mb-1.5">
+                                    Catatan Tambahan (Opsional)
+                                </label>
+                                <textarea id="rental-notes" rows="2" placeholder="Sebutkan lokasi pengantaran atau instruksi khusus..." class="w-full px-4 py-2.5 rounded-xl bg-brand-surface border border-border-subtle text-sm text-text-primary font-medium focus:ring-2 focus:ring-brand-primary focus:outline-none transition-all"></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" id="submit-booking-btn" class="w-full py-3.5 px-6 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-bold transition-all shadow-glow flex items-center justify-center gap-2 hover:scale-[1.01]">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Konfirmasi & Simpan Pemesanan</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Metrics Bar -->
+        <section class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="bg-brand-surface rounded-3xl p-6 sm:p-8 border border-border-subtle shadow-soft flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full md:w-auto">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-layer-group text-2xl text-brand-primary"></i>
+                        <div>
+                            <div class="text-lg font-extrabold text-brand-secondary leading-none">100+</div>
+                            <div class="text-[11px] text-text-secondary font-medium">Unit Peralatan</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-users text-2xl text-brand-primary"></i>
+                        <div>
+                            <div class="text-lg font-extrabold text-brand-secondary leading-none">50K+</div>
+                            <div class="text-[11px] text-text-secondary font-medium">Happy Adventurers</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-star text-2xl text-brand-gold"></i>
+                        <div>
+                            <div class="text-lg font-extrabold text-brand-secondary leading-none">4.8★</div>
+                            <div class="text-[11px] text-text-secondary font-medium">Average Rating</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-clock-rotate-left text-2xl text-brand-primary"></i>
+                        <div>
+                            <div class="text-lg font-extrabold text-brand-secondary leading-none">24/7</div>
+                            <div class="text-[11px] text-text-secondary font-medium">Customer Support</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 shrink-0 pt-4 md:pt-0 border-t md:border-t-0 border-border-subtle w-full md:w-auto justify-between md:justify-end">
+                    <span class="text-xs font-bold text-text-primary">Follow Us:</span>
+                    <div class="flex items-center gap-2">
+                        <a href="#" class="w-9 h-9 rounded-full bg-brand-surface-muted hover:bg-brand-primary hover:text-white text-brand-secondary flex items-center justify-center transition-all text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-brand-surface-muted hover:bg-brand-primary hover:text-white text-brand-secondary flex items-center justify-center transition-all text-xs"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-brand-surface-muted hover:bg-brand-primary hover:text-white text-brand-secondary flex items-center justify-center transition-all text-xs"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-brand-surface-muted hover:bg-brand-primary hover:text-white text-brand-secondary flex items-center justify-center transition-all text-xs"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel Section (Transaksi & Manajemen Data) -->
+        <section id="transaksi" class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="bg-brand-surface rounded-[2rem] shadow-soft border border-border-subtle p-6 sm:p-8 lg:p-10">
+                <!-- Admin Header -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-border-subtle gap-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="text-xs font-bold text-text-muted uppercase tracking-wider">PANEL KELOLA TRANSAKSI</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-secondary tracking-tight mt-1">
+                            Manajemen Sewa & Pengembalian
+                        </h2>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                        <button onclick="openAddEquipmentModal()" class="px-4 py-2.5 rounded-full bg-brand-surface-muted hover:bg-brand-secondary hover:text-white text-brand-secondary text-xs font-bold transition-all flex items-center gap-2 border border-border-subtle">
+                            <i class="fa-solid fa-plus-circle text-brand-primary"></i>
+                            <span>Tambah Alat Baru</span>
+                        </button>
+                        <button onclick="resetSystemData()" class="px-4 py-2.5 rounded-full border border-red-200 text-red-600 hover:bg-red-50 text-xs font-bold transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Reset Data Demo</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Admin Metrics Cards -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-brand-bg rounded-2xl p-4 border border-border-subtle">
+                        <span class="text-xs font-bold text-text-muted uppercase">Total Transaksi</span>
+                        <div id="metric-total-tx" class="text-2xl font-extrabold text-brand-secondary mt-1">0</div>
+                    </div>
+                    <div class="bg-brand-bg rounded-2xl p-4 border border-border-subtle">
+                        <span class="text-xs font-bold text-amber-600 uppercase">Sewa Aktif</span>
+                        <div id="metric-active-tx" class="text-2xl font-extrabold text-amber-600 mt-1">0</div>
+                    </div>
+                    <div class="bg-brand-bg rounded-2xl p-4 border border-border-subtle">
+                        <span class="text-xs font-bold text-emerald-600 uppercase">Selesai/Kembali</span>
+                        <div id="metric-returned-tx" class="text-2xl font-extrabold text-emerald-600 mt-1">0</div>
+                    </div>
+                    <div class="bg-brand-bg rounded-2xl p-4 border border-border-subtle">
+                        <span class="text-xs font-bold text-brand-primary uppercase">Total Omset</span>
+                        <div id="metric-revenue" class="text-xl font-extrabold text-brand-primary mt-1">Rp 0</div>
+                    </div>
+                </div>
+
+                <!-- Transaction Table Filters -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+                    <div class="relative w-full sm:w-72">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted text-xs"></i>
+                        <input type="text" id="admin-tx-search" oninput="renderTransactionsTable()" placeholder="Cari Kode TX / Nama Penyewa..." class="w-full pl-9 pr-4 py-2 rounded-full bg-brand-bg border border-border-subtle text-xs text-text-primary focus:outline-none focus:border-brand-primary">
+                    </div>
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <span class="text-xs text-text-muted font-medium whitespace-nowrap">Filter Status:</span>
+                        <select id="admin-tx-filter" onchange="renderTransactionsTable()" class="px-3 py-2 rounded-full bg-brand-bg border border-border-subtle text-xs font-semibold text-text-primary focus:outline-none">
+                            <option value="Semua">Semua Transaksi</option>
+                            <option value="Aktif">Sewa Aktif</option>
+                            <option value="Selesai">Selesai / Dikembalikan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Active Transactions Data Table -->
+                <div class="overflow-x-auto rounded-2xl border border-border-subtle">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-brand-bg text-text-muted text-[11px] font-extrabold uppercase tracking-wider border-b border-border-subtle">
+                                <th class="py-3.5 px-4">ID Transaksi</th>
+                                <th class="py-3.5 px-4">Penyewa & Catatan</th>
+                                <th class="py-3.5 px-4">Peralatan Sewa</th>
+                                <th class="py-3.5 px-4">Tgl & Durasi</th>
+                                <th class="py-3.5 px-4">Total Biaya</th>
+                                <th class="py-3.5 px-4">Status</th>
+                                <th class="py-3.5 px-4 text-center">Aksi / Kontrol</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-table-body" class="divide-y divide-border-subtle text-xs font-medium text-text-primary">
+                            <!-- Table rows injected dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty Table Indicator -->
+                <div id="tx-empty-state" class="hidden text-center py-12">
+                    <i class="fa-solid fa-receipt text-3xl text-text-muted mb-2"></i>
+                    <p class="text-xs font-semibold text-text-secondary">Belum ada data transaksi sewa yang tercatat.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal: Add New Equipment (Admin) -->
+    <div id="add-equipment-modal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-surface rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-hover border border-border-subtle space-y-5 animate-in fade-in zoom-in-95 duration-200">
+            <div class="flex items-center justify-between pb-3 border-b border-border-subtle">
+                <h3 class="text-lg font-bold text-brand-secondary flex items-center gap-2">
+                    <i class="fa-solid fa-plus-circle text-brand-primary"></i>
+                    <span>Tambah Alat Outdoor Baru</span>
+                </h3>
+                <button onclick="closeAddEquipmentModal()" class="w-8 h-8 rounded-full bg-brand-surface-muted hover:bg-border-subtle flex items-center justify-center text-text-secondary">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="add-equipment-form" onsubmit="submitNewEquipment(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-text-primary mb-1">Nama Peralatan *</label>
+                    <input type="text" id="new-item-name" required placeholder="Contoh: Tenda Dome Eiger 4P" class="w-full px-3.5 py-2.5 rounded-xl bg-brand-bg border border-border-subtle font-medium focus:outline-none focus:border-brand-primary">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-text-primary mb-1">Kategori *</label>
+                        <select id="new-item-category" required class="w-full px-3.5 py-2.5 rounded-xl bg-brand-bg border border-border-subtle font-medium focus:outline-none">
+                            <option value="Tenda">Tenda Camping</option>
+                            <option value="Carrier">Tas Carrier</option>
+                            <option value="Sleeping Bag">Sleeping Bag</option>
+                            <option value="Peralatan Masak">Peralatan Masak</option>
+                            <option value="Penerangan">Penerangan & Aksesoris</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-text-primary mb-1">Harga Sewa / Hari *</label>
+                        <input type="number" id="new-item-price" required placeholder="50000" min="1000" class="w-full px-3.5 py-2.5 rounded-xl bg-brand-bg border border-border-subtle font-medium focus:outline-none focus:border-brand-primary">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-text-primary mb-1">Jumlah Stok Unit *</label>
+                        <input type="number" id="new-item-stock" required value="3" min="1" class="w-full px-3.5 py-2.5 rounded-xl bg-brand-bg border border-border-subtle font-medium focus:outline-none focus:border-brand-primary">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-text-primary mb-1">Rating Produk</label>
+                        <input type="number" id="new-item-rating" step="0.1" value="4.8" min="1" max="5" class="w-full px-3.5 py-2.5 rounded-xl bg-brand-bg border border-border-subtle font-medium focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-text-primary mb-1">URL Foto Produk (Unsplash/Web)</label>
+                    <input type="url" id="new-item-image" placeholder="https://images.unsplash.com/..." class="w-full px-3.5 py-2.5 rounded-xl bg-brand-bg border border-border-subtle font-medium focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block font-bold text-text-primary mb-1">Deskripsi Singkat</label>
+                    <textarea id="new-item-desc" rows="2" placeholder="Spesifikasi & keunggulan alat..." class="w-full px-3.5 py-2.5 rounded-xl bg-brand-bg border border-border-subtle font-medium focus:outline-none"></textarea>
+                </div>
+
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeAddEquipmentModal()" class="px-4 py-2 rounded-full bg-brand-surface-muted text-text-secondary font-bold hover:bg-border-subtle">Batal</button>
+                    <button type="submit" class="px-5 py-2 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-bold shadow-soft">Simpan Peralatan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Footer Section -->
+    <footer class="bg-brand-surface border-t border-border-subtle pt-16 pb-8 mt-12">
+        <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-10 pb-12 border-b border-border-subtle">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-secondary flex items-center justify-center text-brand-primary">
+                            <i class="fa-solid fa-mountain-sun text-lg"></i>
+                        </div>
+                        <span class="text-xl font-bold text-text-primary">Kepin's <span class="text-brand-primary">Outdoor</span></span>
+                    </div>
+                    <p class="text-xs text-text-secondary leading-relaxed max-w-sm">
+                        Penyedia layanan sewa perlengkapan outdoor, pendakian, dan camping terlengkap dengan standar kebersihan dan keamanan terjamin.
+                    </p>
+                    <div class="flex items-center gap-3 text-brand-secondary pt-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-brand-surface-muted flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-brand-surface-muted flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all text-xs"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-brand-surface-muted flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all text-xs"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-4">Navigasi</h5>
+                    <ul class="space-y-2 text-xs text-text-secondary">
+                        <li><a href="#hero" class="hover:text-brand-primary transition-colors">Beranda</a></li>
+                        <li><a href="#katalog" class="hover:text-brand-primary transition-colors">Katalog Alat</a></li>
+                        <li><a href="#fitur-sewa" class="hover:text-brand-primary transition-colors">Pemesanan Online</a></li>
+                        <li><a href="#transaksi" class="hover:text-brand-primary transition-colors">Status Transaksi</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-4">Kategori</h5>
+                    <ul class="space-y-2 text-xs text-text-secondary">
+                        <li><a href="#katalog" onclick="filterCategory('Tenda')" class="hover:text-brand-primary transition-colors">Tenda Camping</a></li>
+                        <li><a href="#katalog" onclick="filterCategory('Carrier')" class="hover:text-brand-primary transition-colors">Tas Carrier 45L-80L</a></li>
+                        <li><a href="#katalog" onclick="filterCategory('Sleeping Bag')" class="hover:text-brand-primary transition-colors">Sleeping Bag Extreme</a></li>
+                        <li><a href="#katalog" onclick="filterCategory('Peralatan Masak')" class="hover:text-brand-primary transition-colors">Kompor & Nesting Set</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-xs font-bold text-text-primary uppercase tracking-wider mb-4">Buletin Info Gunung</h5>
+                    <p class="text-xs text-text-secondary mb-3">Dapatkan promo khusus dan info jalur pendakian terbaru.</p>
+                    <form onsubmit="event.preventDefault(); showToast('Terima kasih telah berlangganan!', 'success');" class="space-y-2">
+                        <input type="email" required placeholder="Masukkan email Anda..." class="w-full px-3.5 py-2 rounded-full bg-brand-bg border border-border-subtle text-xs text-text-primary focus:outline-none focus:border-brand-primary">
+                        <button type="submit" class="w-full py-2 rounded-full bg-brand-secondary hover:bg-brand-secondary-hover text-white text-xs font-bold transition-all">Langganan</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-text-muted">
+                <p>&copy; 2026 Kepin's Outdoor. All rights reserved. System Persewaan Alat Camping.</p>
+                <div class="flex items-center gap-4 mt-2 sm:mt-0">
+                    <a href="#" class="hover:underline">Kebijakan Privasi</a>
+                    <a href="#" class="hover:underline">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ==========================================================================
+           INITIAL MOCK DATA SEEDING & SAFE LOCALSTORAGE LOGIC
+           ========================================================================== */
+
+        const DEFAULT_EQUIPMENTS = [
+            {
+                id: "EQ-001",
+                name: "Tenda Eiger Fortress 4-Person",
+                category: "Tenda",
+                price: 75000,
+                stock: 4,
+                rating: 4.9,
+                description: "Tenda dome double layer anti badai dengan kapasitas 4-5 orang dewasa. Waterproof 3000mm.",
+                image: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                id: "EQ-002",
+                name: "Tas Carrier Arei Gear 60+5 Litres",
+                category: "Carrier",
+                price: 45000,
+                stock: 5,
+                rating: 4.8,
+                description: "Backpack ergonomis dengan sistem sirkulasi udara backsystem dan include raincover.",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                id: "EQ-003",
+                name: "Sleeping Bag Eiger Featherlite 0C",
+                category: "Sleeping Bag",
+                price: 25000,
+                stock: 8,
+                rating: 4.7,
+                description: "Kantong tidur thermal berbobot ringan, tahan suhu ekstrem hingga 0 derajat Celsius.",
+                image: "https://images.unsplash.com/photo-1517824806704-9040b037703b?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                id: "EQ-004",
+                name: "Kompor Portable Primus Spider + Windshield",
+                category: "Peralatan Masak",
+                price: 20000,
+                stock: 6,
+                rating: 4.9,
+                description: "Kompor lapangan ultralight dengan pemantik otomatis dan penahan angin alumunium.",
+                image: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                id: "EQ-005",
+                name: "Nesting Cookware Set 4-in-1 Anodized",
+                category: "Peralatan Masak",
+                price: 20000,
+                stock: 5,
+                rating: 4.6,
+                description: "Panci dan wajan alumunium tebal anti lengket lengkap dengan teko mini outdoor.",
+                image: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                id: "EQ-006",
+                name: "Headlamp Petzl Tikkina 300 Lumens",
+                category: "Penerangan",
+                price: 15000,
+                stock: 10,
+                rating: 4.9,
+                description: "Senter kepala tahan air IPX4 dengan 3 tingkat pencahayaan dan sinar jarak jauh.",
+                image: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                id: "EQ-007",
+                name: "Matras Aluminium Foil Double Side",
+                category: "Sleeping Bag",
+                price: 10000,
+                stock: 12,
+                rating: 4.5,
+                description: "Matras isolasi dingin tanah untuk menambah kenyamanan di dalam tenda.",
+                image: "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                id: "EQ-008",
+                name: "Folding Outdoor Chair Naturehike",
+                category: "Penerangan",
+                price: 18000,
+                stock: 6,
+                rating: 4.8,
+                description: "Kursi lipat bersantai santai dengan rangka paduan alumunium kokoh hingga 120kg.",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop"
+            }
+        ];
+
+        const DEFAULT_TRANSACTIONS = [
+            {
+                id: "POM-20261018-102",
+                renterName: "Rizky Febrian",
+                renterPhone: "081298765432",
+                itemId: "EQ-001",
+                itemName: "Tenda Eiger Fortress 4-Person",
+                startDate: "2026-10-18",
+                duration: 3,
+                quantity: 1,
+                totalCost: 225000,
+                notes: "Minta tolong diperiksa dulu pasak tendanya mas.",
+                status: "Aktif",
+                createdAt: "2026-10-18 09:30"
+            },
+            {
+                id: "POM-20261015-088",
+                renterName: "Siti Rahmawati",
+                renterPhone: "085711223344",
+                itemId: "EQ-002",
+                itemName: "Tas Carrier Arei Gear 60+5 Litres",
+                startDate: "2026-10-15",
+                duration: 2,
+                quantity: 2,
+                totalCost: 180000,
+                notes: "Ambil di toko jam 4 sore.",
+                status: "Selesai",
+                createdAt: "2026-10-15 14:15"
+            }
+        ];
+
+        // Global State Variables
+        let equipmentsData = [];
+        let transactionsData = [];
+        let currentActiveCategory = "Semua";
+
+        /* Initialize Application State on Load with Crash-Proof Try/Catch */
+        window.addEventListener('DOMContentLoaded', () => {
+            initLocalStorageData();
+            setDefaultRentalDate();
+            renderCatalogGrid();
+            populateBookingItemDropdown();
+            renderTransactionsTable();
+            updateAdminMetrics();
+        });
+
+        function initLocalStorageData() {
+            try {
+                const storedEquipments = localStorage.getItem('Kepins_equipments');
+                equipmentsData = storedEquipments ? JSON.parse(storedEquipments) : [...DEFAULT_EQUIPMENTS];
+                if (!Array.isArray(equipmentsData) || equipmentsData.length === 0) {
+                    equipmentsData = [...DEFAULT_EQUIPMENTS];
+                }
+            } catch (err) {
+                console.error("Gagal parse data peralatan, reset ke default:", err);
+                equipmentsData = [...DEFAULT_EQUIPMENTS];
+            }
+
+            try {
+                const storedTransactions = localStorage.getItem('Kepins_transactions');
+                transactionsData = storedTransactions ? JSON.parse(storedTransactions) : [...DEFAULT_TRANSACTIONS];
+                if (!Array.isArray(transactionsData)) {
+                    transactionsData = [...DEFAULT_TRANSACTIONS];
+                }
+            } catch (err) {
+                console.error("Gagal parse data transaksi, reset ke default:", err);
+                transactionsData = [...DEFAULT_TRANSACTIONS];
+            }
+
+            saveEquipmentsToStorage();
+            saveTransactionsToStorage();
+        }
+
+        function saveEquipmentsToStorage() {
+            localStorage.setItem('Kepins_equipments', JSON.stringify(equipmentsData));
+        }
+
+        function saveTransactionsToStorage() {
+            localStorage.setItem('Kepins_transactions', JSON.stringify(transactionsData));
+        }
+
+        /* ==========================================================================
+           UI CATALOG & REALTIME FILTERING FUNCTIONS
+           ========================================================================== */
+
+        function renderCatalogGrid() {
+            const container = document.getElementById('equipment-grid');
+            const emptyState = document.getElementById('catalog-empty-state');
+            const countBadge = document.getElementById('catalog-count-badge');
+
+            // Read Filters
+            const searchKeyword = (document.getElementById('quick-search-input').value || '').toLowerCase().trim();
+            const filterCategoryVal = currentActiveCategory;
+            const filterStatusVal = document.getElementById('quick-status-select').value;
+
+            const filteredItems = equipmentsData.filter(item => {
+                const matchCategory = (filterCategoryVal === 'Semua') || (item.category === filterCategoryVal);
+                const matchSearch = item.name.toLowerCase().includes(searchKeyword) || item.description.toLowerCase().includes(searchKeyword);
+                
+                const isAvailable = item.stock > 0;
+                let matchStatus = true;
+                if (filterStatusVal === 'Tersedia') matchStatus = isAvailable;
+                if (filterStatusVal === 'Disewa') matchStatus = !isAvailable;
+
+                return matchCategory && matchSearch && matchStatus;
+            });
+
+            countBadge.textContent = `${filteredItems.length} Unit`;
+
+            if (filteredItems.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            container.innerHTML = filteredItems.map(item => {
+                const isAvailable = item.stock > 0;
+                const statusBadge = isAvailable 
+                    ? `<span class="px-3 py-1 rounded-full bg-emerald-500/90 backdrop-blur-md text-white text-[11px] font-bold shadow-soft"><i class="fa-solid fa-circle-check mr-1"></i> Tersedia (${item.stock})</span>`
+                    : `<span class="px-3 py-1 rounded-full bg-red-500/90 backdrop-blur-md text-white text-[11px] font-bold shadow-soft"><i class="fa-solid fa-clock mr-1"></i> Habis Disewa</span>`;
+
+                return `
+                    <div class="bg-brand-surface rounded-3xl overflow-hidden shadow-soft hover:shadow-hover border border-border-subtle transition-all duration-300 flex flex-col group hover:-translate-y-1.5">
+                        <div class="relative h-52 overflow-hidden bg-brand-surface-muted">
+                            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}" onerror="this.src='https://placehold.co/600x400/1D3B2A/FFFFFF?text=${encodeURIComponent(item.name)}'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 bg-brand-secondary/85 backdrop-blur-md px-2.5 py-1 rounded-full text-brand-gold text-[11px] font-bold flex items-center gap-1 border border-white/10">
+                                <i class="fa-solid fa-star"></i>
+                                <span>${item.rating}</span>
+                            </div>
+
+                            <div class="absolute top-3 right-3">
+                                ${statusBadge}
+                            </div>
+
+                            <div class="absolute bottom-3 left-3 text-white text-xs font-semibold bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-md">
+                                ${escapeHtml(item.category)}
+                            </div>
+                        </div>
+
+                        <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                            <div>
+                                <h3 class="font-bold text-base text-text-primary group-hover:text-brand-primary transition-colors line-clamp-1">${escapeHtml(item.name)}</h3>
+                                <p class="text-xs text-text-secondary mt-1.5 line-clamp-2 leading-relaxed">${escapeHtml(item.description)}</p>
+                            </div>
+
+                            <div class="pt-3 border-t border-border-subtle flex items-center justify-between">
+                                <div>
+                                    <span class="text-[10px] text-text-muted font-bold block uppercase tracking-wider">Harga Sewa</span>
+                                    <span class="text-base font-extrabold text-brand-primary">Rp ${formatRupiah(item.price)}<span class="text-[11px] text-text-secondary font-normal">/hari</span></span>
+                                </div>
+
+                                <button onclick="selectItemForBooking('${item.id}')" ${!isAvailable ? 'disabled' : ''} class="px-4 py-2 rounded-full ${isAvailable ? 'bg-brand-secondary hover:bg-brand-primary text-white shadow-soft hover:shadow-glow' : 'bg-gray-200 text-gray-400 cursor-not-allowed'} text-xs font-bold transition-all flex items-center gap-1.5">
+                                    <span>${isAvailable ? 'Sewa' : 'Habis'}</span>
+                                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterCategory(categoryName) {
+            currentActiveCategory = categoryName;
+
+            // Synchronize Dropdown select
+            const categorySelect = document.getElementById('quick-category-select');
+            if (categorySelect) categorySelect.value = categoryName;
+
+            // Update Chips UI
+            const chips = document.querySelectorAll('.category-chip');
+            chips.forEach(chip => {
+                const chipCategory = chip.getAttribute('data-category');
+                if (chipCategory === categoryName) {
+                    chip.className = "category-chip active px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap bg-brand-surface-muted border border-brand-secondary text-brand-secondary shadow-sm";
+                } else {
+                    chip.className = "category-chip px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap bg-brand-surface border border-border-subtle text-text-secondary hover:border-brand-primary hover:text-brand-primary";
+                }
+            });
+
+            renderCatalogGrid();
+        }
+
+        function handleCategorySelectChange() {
+            const selectedVal = document.getElementById('quick-category-select').value;
+            filterCategory(selectedVal);
+        }
+
+        function handleQuickSearch(e) {
+            e.preventDefault();
+            renderCatalogGrid();
+            scrollToCatalog();
+        }
+
+        function resetSearchAndFilter() {
+            document.getElementById('quick-search-input').value = '';
+            document.getElementById('quick-category-select').value = 'Semua';
+            document.getElementById('quick-status-select').value = 'Semua';
+            filterCategory('Semua');
+        }
+
+        /* ==========================================================================
+           FORM PEMESANAN & AUTOMATIC CALCULATION LOGIC
+           ========================================================================== */
+
+        function setDefaultRentalDate() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('rental-date');
+            if (dateInput) {
+                dateInput.value = today;
+                dateInput.min = today; // Prevent choosing past dates
+            }
+        }
+
+        function populateBookingItemDropdown() {
+            const selectEl = document.getElementById('booking-item-select');
+            const currentSelection = selectEl.value;
+            selectEl.innerHTML = '<option value="" disabled selected>-- Pilih peralatan dari katalog --</option>';
+
+            equipmentsData.forEach(item => {
+                const isAvailable = item.stock > 0;
+                const option = document.createElement('option');
+                option.value = item.id;
+                option.textContent = `${item.name} - Rp ${formatRupiah(item.price)}/hari (${isAvailable ? 'Stok: ' + item.stock : 'Stok Habis'})`;
+                if (!isAvailable) option.disabled = true;
+                selectEl.appendChild(option);
+            });
+
+            if (currentSelection && equipmentsData.some(i => i.id === currentSelection && i.stock > 0)) {
+                selectEl.value = currentSelection;
+            }
+        }
+
+        function selectItemForBooking(itemId) {
+            const selectEl = document.getElementById('booking-item-select');
+            selectEl.value = itemId;
+            calculateRentalCost();
+            scrollToBooking();
+            showToast('Peralatan telah dipilih ke dalam form!', 'info');
+        }
+
+        function calculateRentalCost() {
+            const selectedItemId = document.getElementById('booking-item-select').value;
+            let duration = parseInt(document.getElementById('rental-duration').value);
+            let quantity = parseInt(document.getElementById('rental-quantity').value);
+
+            // Enforce strictly positive values
+            if (isNaN(duration) || duration < 1) duration = 1;
+            if (isNaN(quantity) || quantity < 1) quantity = 1;
+
+            const selectedItem = equipmentsData.find(item => item.id === selectedItemId);
+
+            if (!selectedItem) {
+                document.getElementById('summary-item-name').textContent = '- Belum Dipilih -';
+                document.getElementById('summary-price-per-day').textContent = 'Rp 0';
+                document.getElementById('summary-duration').textContent = `${duration} Hari`;
+                document.getElementById('summary-quantity').textContent = `${quantity} Unit`;
+                document.getElementById('summary-total-cost').textContent = 'Rp 0';
+                return;
+            }
+
+            const totalCost = selectedItem.price * duration * quantity;
+
+            document.getElementById('summary-item-name').textContent = selectedItem.name;
+            document.getElementById('summary-price-per-day').textContent = `Rp ${formatRupiah(selectedItem.price)}`;
+            document.getElementById('summary-duration').textContent = `${duration} Hari`;
+            document.getElementById('summary-quantity').textContent = `${quantity} Unit`;
+            document.getElementById('summary-total-cost').textContent = `Rp ${formatRupiah(totalCost)}`;
+        }
+
+        function submitBookingForm(e) {
+            e.preventDefault();
+
+            const itemId = document.getElementById('booking-item-select').value;
+            const renterName = document.getElementById('renter-name').value.trim();
+            const renterPhone = document.getElementById('renter-phone').value.trim();
+            const startDate = document.getElementById('rental-date').value;
+            
+            let duration = parseInt(document.getElementById('rental-duration').value);
+            let quantity = parseInt(document.getElementById('rental-quantity').value);
+            const notes = document.getElementById('rental-notes').value.trim();
+
+            if (isNaN(duration) || duration < 1) duration = 1;
+            if (isNaN(quantity) || quantity < 1) quantity = 1;
+
+            const item = equipmentsData.find(i => i.id === itemId);
+
+            if (!item) {
+                showToast('Silakan pilih alat outdoor terlebih dahulu!', 'error');
+                return;
+            }
+
+            if (quantity > item.stock) {
+                showToast(`Stok tidak mencukupi! Hanya tersedia ${item.stock} unit.`, 'error');
+                return;
+            }
+
+            const totalCost = item.price * duration * quantity;
+            const now = new Date();
+            const txId = `POM-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}-${Math.floor(100 + Math.random() * 900)}`;
+
+            const newTx = {
+                id: txId,
+                renterName,
+                renterPhone,
+                itemId: item.id,
+                itemName: item.name,
+                startDate,
+                duration,
+                quantity,
+                totalCost,
+                notes,
+                status: 'Aktif',
+                createdAt: `${now.toISOString().split('T')[0]} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`
+            };
+
+            // Deduct Stock
+            item.stock -= quantity;
+
+            // Save State
+            transactionsData.unshift(newTx);
+            saveTransactionsToStorage();
+            saveEquipmentsToStorage();
+
+            // Refresh UI
+            renderCatalogGrid();
+            populateBookingItemDropdown();
+            renderTransactionsTable();
+            updateAdminMetrics();
+
+            // Reset Form
+            document.getElementById('rental-booking-form').reset();
+            setDefaultRentalDate();
+            calculateRentalCost();
+
+            showToast(`Pemesanan Berhasil! Kode Transaksi: ${txId}`, 'success');
+            scrollToTransactions();
+        }
+
+        /* ==========================================================================
+           ADMIN PANEL & TRANSACTION MANAGEMENT
+           ========================================================================== */
+
+        function renderTransactionsTable() {
+            const tableBody = document.getElementById('transactions-table-body');
+            const emptyState = document.getElementById('tx-empty-state');
+            const searchKeyword = (document.getElementById('admin-tx-search').value || '').toLowerCase().trim();
+            const filterStatus = document.getElementById('admin-tx-filter').value;
+
+            const filteredTx = transactionsData.filter(tx => {
+                const matchSearch = tx.id.toLowerCase().includes(searchKeyword) || 
+                                    tx.renterName.toLowerCase().includes(searchKeyword) ||
+                                    tx.itemName.toLowerCase().includes(searchKeyword);
+                
+                let matchStatus = true;
+                if (filterStatus === 'Aktif') matchStatus = (tx.status === 'Aktif');
+                if (filterStatus === 'Selesai') matchStatus = (tx.status === 'Selesai');
+
+                return matchSearch && matchStatus;
+            });
+
+            if (filteredTx.length === 0) {
+                tableBody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            tableBody.innerHTML = filteredTx.map(tx => {
+                const isActive = (tx.status === 'Aktif');
+                const statusBadge = isActive
+                    ? `<span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-[11px] font-bold inline-flex items-center gap-1"><i class="fa-solid fa-spinner animate-spin text-[9px]"></i> Disewa (Aktif)</span>`
+                    : `<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold inline-flex items-center gap-1"><i class="fa-solid fa-circle-check text-[9px]"></i> Dikembalikan</span>`;
+
+                const actionButton = isActive
+                    ? `<button onclick="completeTransaction('${tx.id}')" class="px-3 py-1.5 rounded-full bg-brand-secondary hover:bg-emerald-700 text-white text-[11px] font-bold transition-all shadow-sm flex items-center gap-1 mx-auto">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Set Selesai</span>
+                       </button>`
+                    : `<span class="text-text-muted text-[11px] italic block text-center"><i class="fa-solid fa-lock"></i> Selesai</span>`;
+
+                const noteBadge = tx.notes 
+                    ? `<div class="text-[11px] text-amber-700 font-medium italic mt-1 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/60 inline-block max-w-[200px] truncate" title="${escapeHtml(tx.notes)}"><i class="fa-regular fa-comment-dots mr-1"></i>${escapeHtml(tx.notes)}</div>` 
+                    : '';
+
+                const waPhone = tx.renterPhone.replace(/[^0-9]/g, '');
+
+                return `
+                    <tr class="hover:bg-brand-surface-muted/50 transition-colors">
+                        <td class="py-3.5 px-4 font-bold text-brand-secondary">${escapeHtml(tx.id)}</td>
+                        <td class="py-3.5 px-4">
+                            <div class="font-bold text-text-primary">${escapeHtml(tx.renterName)}</div>
+                            <div class="text-[11px] text-text-secondary flex items-center gap-1">
+                                <a href="https://wa.me/${waPhone}" target="_blank" class="hover:underline text-emerald-600 font-semibold"><i class="fa-brands fa-whatsapp"></i> ${escapeHtml(tx.renterPhone)}</a>
+                            </div>
+                            ${noteBadge}
+                        </td>
+                        <td class="py-3.5 px-4">
+                            <div class="font-semibold text-text-primary">${escapeHtml(tx.itemName)}</div>
+                            <div class="text-[11px] text-text-muted">${tx.quantity} Unit</div>
+                        </td>
+                        <td class="py-3.5 px-4">
+                            <div>${tx.startDate}</div>
+                            <div class="text-[11px] font-semibold text-brand-primary">${tx.duration} Hari</div>
+                        </td>
+                        <td class="py-3.5 px-4 font-bold text-text-primary">
+                            Rp ${formatRupiah(tx.totalCost)}
+                        </td>
+                        <td class="py-3.5 px-4">
+                            ${statusBadge}
+                        </td>
+                        <td class="py-3.5 px-4 text-center">
+                            ${actionButton}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function completeTransaction(txId) {
+            const txIndex = transactionsData.findIndex(t => t.id === txId);
+            if (txIndex === -1) return;
+
+            const tx = transactionsData[txIndex];
+            if (tx.status !== 'Aktif') return; // Idempotency check
+
+            tx.status = 'Selesai';
+
+            // Return stock back to equipment
+            const item = equipmentsData.find(i => i.id === tx.itemId);
+            if (item) {
+                item.stock += tx.quantity;
+            }
+
+            saveTransactionsToStorage();
+            saveEquipmentsToStorage();
+
+            renderCatalogGrid();
+            populateBookingItemDropdown();
+            renderTransactionsTable();
+            updateAdminMetrics();
+
+            showToast(`Transaksi ${txId} selesai! Peralatan berhasil dikembalikan ke stok.`, 'success');
+        }
+
+        function updateAdminMetrics() {
+            const totalTx = transactionsData.length;
+            const activeTx = transactionsData.filter(t => t.status === 'Aktif').length;
+            const returnedTx = transactionsData.filter(t => t.status === 'Selesai').length;
+            const totalRevenue = transactionsData.reduce((sum, t) => sum + (t.totalCost || 0), 0);
+
+            document.getElementById('metric-total-tx').textContent = totalTx;
+            document.getElementById('metric-active-tx').textContent = activeTx;
+            document.getElementById('metric-returned-tx').textContent = returnedTx;
+            document.getElementById('metric-revenue').textContent = `Rp ${formatRupiah(totalRevenue)}`;
+        }
+
+        /* Modal Handlers for Adding Equipment with Unique ID Algorithm */
+        function openAddEquipmentModal() {
+            document.getElementById('add-equipment-modal').classList.remove('hidden');
+        }
+
+        function closeAddEquipmentModal() {
+            document.getElementById('add-equipment-modal').classList.add('hidden');
+            document.getElementById('add-equipment-form').reset();
+        }
+
+        function submitNewEquipment(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('new-item-name').value.trim();
+            const category = document.getElementById('new-item-category').value;
+            const price = Math.max(1000, parseInt(document.getElementById('new-item-price').value) || 1000);
+            const stock = Math.max(1, parseInt(document.getElementById('new-item-stock').value) || 1);
+            const rating = Math.min(5, Math.max(1, parseFloat(document.getElementById('new-item-rating').value) || 4.8));
+            const image = document.getElementById('new-item-image').value.trim() || 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop';
+            const desc = document.getElementById('new-item-desc').value.trim() || 'Perlengkapan outdoor kualitas premium.';
+
+            // Generate robust unique ID based on max existing numeric suffix
+            const maxIdNum = equipmentsData.reduce((max, item) => {
+                const num = parseInt((item.id || '').replace(/\D/g, '')) || 0;
+                return Math.max(max, num);
+            }, 0);
+            const newId = `EQ-${String(maxIdNum + 1).padStart(3, '0')}`;
+
+            const newEquipment = {
+                id: newId,
+                name,
+                category,
+                price,
+                stock,
+                rating,
+                description: desc,
+                image
+            };
+
+            equipmentsData.unshift(newEquipment);
+            saveEquipmentsToStorage();
+
+            renderCatalogGrid();
+            populateBookingItemDropdown();
+            closeAddEquipmentModal();
+
+            showToast(`Peralatan "${name}" [${newId}] berhasil ditambahkan!`, 'success');
+        }
+
+        function resetSystemData() {
+            localStorage.removeItem('Kepins_equipments');
+            localStorage.removeItem('Kepins_transactions');
+            initLocalStorageData();
+            renderCatalogGrid();
+            populateBookingItemDropdown();
+            renderTransactionsTable();
+            updateAdminMetrics();
+            showToast('Sistem berhasil direset ke data demo standar.', 'info');
+        }
+
+        /* Helper Utilities */
+        function formatRupiah(number) {
+            const validNum = Number(number) || 0;
+            return new Intl.NumberFormat('id-ID').format(validNum);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+
+            let bgClass = 'bg-brand-secondary text-white';
+            let icon = 'fa-circle-info';
+
+            if (type === 'success') {
+                bgClass = 'bg-emerald-600 text-white';
+                icon = 'fa-circle-check';
+            } else if (type === 'error') {
+                bgClass = 'bg-red-600 text-white';
+                icon = 'fa-triangle-exclamation';
+            }
+
+            toast.className = `${bgClass} px-4 py-3 rounded-2xl shadow-hover text-xs font-bold flex items-center gap-2 pointer-events-auto transition-all transform translate-y-2 opacity-0 duration-300`;
+            toast.innerHTML = `<i class="fa-solid ${icon} text-sm"></i> <span>${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        function switchTab(tabName) {
+            if (tabName === 'admin') {
+                scrollToTransactions();
+            }
+        }
+
+        function scrollToCatalog() {
+            document.getElementById('katalog').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToBooking() {
+            document.getElementById('fitur-sewa').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTransactions() {
+            document.getElementById('transaksi').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
